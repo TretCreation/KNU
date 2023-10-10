@@ -6,14 +6,19 @@ namespace ThreadWar
         public List<Enemy> Enemies { get; set; }
         public List<Bullet> Bullets { get; set; }
 
-        // public int GameScore { get; set; }
-        // public int EscapedInvaderCount { get; set; }
+        public int GameScore { get; set; }
+
+        public int EscapedEnemiesCount { get; set; }
+
+        public int maxBullets = 3;
 
         public GameState()
         {
             Player = new Player(38, 30);
             Bullets = new List<Bullet>();
             Enemies = new List<Enemy>() { new Enemy(30, 0) };
+
+            Timer timer = new Timer(ResetMaxBullets, null, 0, 2000);
         }
 
         public void GetKeyStrokes()
@@ -40,7 +45,11 @@ namespace ThreadWar
                         break;
 
                     case ConsoleKey.Spacebar:
-                        Bullets.Add(new Bullet(Player.XCoordinate, Player.YCoordinate));
+                        if (maxBullets != 0)
+                        {
+                            Bullets.Add(new Bullet(Player.XCoordinate, Player.YCoordinate));
+                            maxBullets--;
+                        }
                         break;
                 }
             }
@@ -86,12 +95,17 @@ namespace ThreadWar
                 if (killedEnemy != null)
                 {
                     Enemies.Remove(killedEnemy);
-                    // GameScore++;
+                    GameScore++;
                     return true;
                 }
                 return false;
             }
             return false;
+        }
+
+        private void ResetMaxBullets(object state)
+        {
+            maxBullets = 3;
         }
 
         public void UpdateEnemyLocation()
@@ -109,12 +123,19 @@ namespace ThreadWar
                     }
                     else if (enemy.YCoordinate == 30)
                     {
-                        // EscapedInvaderCount++;
-                        ;
+                        EscapedEnemiesCount++;
                     }
                 }
             }
             Enemies = activeEnemies;
+        }
+
+        public bool CheckGameOver()
+        {
+            if (EscapedEnemiesCount >= 30)
+                return true;
+            else
+                return false;
         }
     }
 }

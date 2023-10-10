@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace ThreadWar
 {
     public class MainScreen
@@ -96,13 +92,28 @@ namespace ThreadWar
         public void DisplayGameScore(int gameScore)
         {
             Console.SetCursorPosition(5, 32);
-            Console.Write(String.Format("Game Score: {0}", gameScore));
+            Console.Write(String.Format($"Hit: {gameScore}"));
         }
 
         public void DisplayEscapedEnemyCount(int escapedEnemiesCount)
         {
             Console.SetCursorPosition(50, 32);
-            Console.Write(String.Format("Escaped s: {0}", escapedEnemiesCount));
+            Console.Write(String.Format($"Miss: {escapedEnemiesCount}"));
+        }
+
+        public void DisplayDevTools(double currentSpeed, int bullets, double elapsedTime)
+        {
+            Console.SetCursorPosition(55, 9);
+            Console.WriteLine("Dev Tools:");
+
+            Console.SetCursorPosition(55, 11);
+            Console.WriteLine($"Speed: {currentSpeed}");
+
+            Console.SetCursorPosition(55, 12);
+            Console.WriteLine($"Bullets: {bullets}");
+
+            Console.SetCursorPosition(55, 13);
+            Console.WriteLine($"elapsedTime: {elapsedTime}");
         }
 
         public void HideCursor()
