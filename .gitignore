@@ -3,3 +3,7 @@
 **/obj
 **/.vscode
 **/.config
+
+# Tests
+**/test1.cs
+**/test2.cs
