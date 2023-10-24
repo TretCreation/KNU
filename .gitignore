@@ -3,7 +3,7 @@
 **/obj
 **/.vscode
 **/.config
-**/node_moduls
+**/node_modules
 
 # Tests
 **/test1.cs
