@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Рецепт млинців</title>
+    
+		<!-- Microdata -->
+		<div itemscope itemtype="https://schema.org/Recipe">
+			<h1 itemprop="name">Млинці</h1>
+			<p itemprop="description">Рецепт тонких млинців.</p>
+			<span itemprop="author" typeof="Person">
+					<span itemprop="name">Tretyakov Volodymyr</span>
+			</span>
+			<img itemprop="image" src="image.jpg" alt="Млинці">
+			<span itemprop="datePublished">2023-10-10</span>
+			<ul itemprop="recipeIngredient">
+					<li>ingredient 1</li>
+					<li>ingredient 2</li>
+					<li>ingredient 3</li>
+					<li>ingredient 4</li>
+					<li>ingredient 5</li>
+			</ul>
+			<div itemprop="recipeInstructions">This is the long part, etc.</div>
+		</div>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Recipe",
+        "name": "Млинці",
+        "description": "Рецепт тонких млинців.",
+        "author": "Tretyakov Volodymyr",
+				"image": "image.jpg",
+				"datePublished": "2023-10-10",
+        "recipeYield": "4 portions",
+        "recipeCategory": "Breakfast",
+				"recipeIngredient": [
+        	"ingredient 1",
+        	"ingredient 2",
+        	"ingredient 3",
+        	"ingredient 4",
+        	"ingredient 5"
+      	],
+        "recipeInstructions": "This is the long part, etc."
+    }
+    </script>
+
+		<!-- RDFa -->
+		<div vocab="http://schema.org/" typeof="Recipe">
+			<h1 property="name">Млинці</h1>
+			<p property="description">Рецепт тонких млинців.</p>
+			<span property="author" typeof="Person">
+					<span property="name">Tretyakov Volodymyr</span>
+			</span>
+			<img property="image" src="image.jpg" alt="Млинці">
+			<span property="datePublished">2023-10-10</span>
+			<ul property="recipeIngredient">
+					<li>ingredient 1</li>
+					<li>ingredient 2</li>
+					<li>ingredient 3</li>
+					<li>ingredient 4</li>
+					<li>ingredient 5</li>
+			</ul>
+			<div property="recipeInstructions">This is the long part, etc.</div>
+		</div>
+</head>
+<body>
+</body>

@@ -1,0 +1,12 @@
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/name> "Keith" .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/address> "1516 Henry Street, Berkeley, California 94709, USA" .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/degreee> "Biology Bachelor" .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/graduationYear> "2011"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/interests> "Birds, Ecology, Environment, Photography, Travel" .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/visitedCountry> "Canada" .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/visitedCountry> "France" .
+<http://example.org/Keith> <http://xmlns.com/foaf/0.1/knows> <http://example.org/Emma> .
+<http://example.org/Emma> <http://xmlns.com/foaf/0.1/name> "Emma" .
+<http://example.org/Emma> <http://xmlns.com/foaf/0.1/address> "Carrer de la Guardia Civil 20, 46020 Valencia, Spain" .
+<http://example.org/Emma> <http://xmlns.com/foaf/0.1/degree> "Chemistry Master" .
+<http://example.org/Emma> <http://xmlns.com/foaf/0.1/graduationYear> "2015"^^<http://www.w3.org/2001/XMLSchema#gYear> .
