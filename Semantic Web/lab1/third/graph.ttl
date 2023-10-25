@@ -1,0 +1,18 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ex: <http://example.org/>.
+
+ex:emma
+    foaf:address "Carrer de la Guardia Civil 20, 46020 Valencia, Spain";
+    foaf:degree "Chemistry Master";
+    foaf:graduationYear "2015";
+    foaf:interests "Cycling, Music, Travel";
+    foaf:name "Emma";
+    foaf:visitedCountry "Portugal, Italy, France, Germany, Denmark, Sweden".
+ex:keith
+    foaf:address "1516 Henry Street, Berkeley, California 94709, USA";
+    foaf:degree "Biology Bachelor";
+    foaf:graduationYear "2011";
+    foaf:interests "Birds, Ecology, Environment, Photography, Travel";
+    foaf:knows ex:emma;
+    foaf:name "Keith";
+    foaf:visitedCountry "Canada, France".
