@@ -1,0 +1,18 @@
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/name> "Кейд" .
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/lives> "1516 Henry Street, Берклі, Каліфорнія 94709, США" .
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/hasBachelorDegreeFrom> "Каліфорнійський університет, 2011" .
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/interests> "птахи, екологія, довкілля, фотографія, подорожі" .
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/visited> "Канада" .
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/visited> "Німеччина" .
+<http://example.org/kade> <http://xmlns.com/foaf/0.1/knows> <http://example.org/emma> .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/name> "Емма" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/lives> "Carrer de la Guardia Civil 20, 46020 Valencia, Spain" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/interests> "їзда на велосипеді, музика, подорожі" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/visited> "Франція" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/visited> "Португалія" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/visited> "Італія" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/visited> "Данія" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/visited> "Швеція" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/hasMasterDegreeFrom> "Університет Валенсії, 2015" .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/knows> <http://example.org/kade> .
+<http://example.org/emma> <http://xmlns.com/foaf/0.1/age> "36"^^<http://www.w3.org/2001/XMLSchema#int> .
