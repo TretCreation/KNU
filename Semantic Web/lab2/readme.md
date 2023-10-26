@@ -6,8 +6,8 @@ PREFIX dbc: <http://dbpedia.org/resource/Category:>
 SELECT ?country ?population
 WHERE {
   	?country a dbo:Country ;
-    dct:subject dbc:Eastern_European_countries ;
-    dbo:populationTotal ?population .
+      dct:subject dbc:Eastern_European_countries ;
+      dbo:populationTotal ?population .
 }
 ORDER BY DESC(?population)
 
@@ -20,15 +20,15 @@ SELECT ?countryName (GROUP_CONCAT(DISTINCT ?languageNameUpper; separator=" | ") 
 WHERE {
   {
     ?country a dbo:Country ;
-             rdfs:label ?countryName ;
-             dct:subject dbc:Countries_in_Europe .
+      rdfs:label ?countryName ;
+      dct:subject dbc:Countries_in_Europe .
     FILTER (regex(str(?countryName), "^A", "i"))
   }
   UNION 
   {
     ?country a dbo:Country ;
-             rdfs:label ?countryName ;
-             dct:subject dbc:Countries_in_North_America .
+      rdfs:label ?countryName ;
+      dct:subject dbc:Countries_in_North_America .
     FILTER (regex(str(?countryName), "^A", "i"))
   }
   OPTIONAL {
@@ -48,7 +48,7 @@ PREFIX dbr: <http://dbpedia.org/resource/>
 SELECT ?laureate ?birthdate
 WHERE {
   ?laureate dbo:award dbr:Nobel_Prize_in_Physics ;
-            dbo:birthDate ?birthdate .
+    dbo:birthDate ?birthdate .
 }
 
 ORDER BY ?birthdate
@@ -59,7 +59,7 @@ PREFIX dbr: <http://dbpedia.org/resource/>
 SELECT ?university (COUNT(?laureate) as ?laureateCount)
 WHERE {
   ?laureate dbo:award dbr:Nobel_Prize_in_Physics ;
-            dbo:almaMater ?university .
+    dbo:almaMater ?university .
 }
 
 GROUP BY ?university
@@ -72,8 +72,8 @@ PREFIX dbr: <http://dbpedia.org/resource/>
 SELECT (COUNT(DISTINCT ?laureate) as ?laureates)
 WHERE {
   ?laureate dbo:award dbr:Nobel_Prize_in_Physics ;
-            dbo:birthPlace ?birthPlace ;
-            dbo:almaMater ?university .
+    dbo:birthPlace ?birthPlace ;
+    dbo:almaMater ?university .
 
   ?university dbo:location ?universityLocation .
 
