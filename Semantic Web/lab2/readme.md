@@ -22,18 +22,18 @@ WHERE {
     ?country a dbo:Country ;
       rdfs:label ?countryName ;
       dct:subject dbc:Countries_in_Europe .
-    FILTER (regex(str(?countryName), "^A", "i"))
+    FILTER (regex(str(?countryName), "^A"))
   }
   UNION 
   {
     ?country a dbo:Country ;
       rdfs:label ?countryName ;
       dct:subject dbc:Countries_in_North_America .
-    FILTER (regex(str(?countryName), "^A", "i"))
+    FILTER (regex(str(?countryName), "^A"))
   }
   OPTIONAL {
-    ?country dbo:officialLanguage ?languageResource.
-    ?languageResource rdfs:label ?languageName.
+    ?country dbo:officialLanguage ?languageRes.
+    ?languageRes rdfs:label ?languageName.
     FILTER (LANGMATCHES(LANG(?languageName), "en"))
     BIND(UCASE(?languageName) as ?languageNameUpper)
   }
@@ -74,8 +74,6 @@ WHERE {
   ?laureate dbo:award dbr:Nobel_Prize_in_Physics ;
     dbo:birthPlace ?birthPlace ;
     dbo:almaMater ?university .
-
   ?university dbo:location ?universityLocation .
-
   FILTER (?birthPlace != ?universityLocation)
 }
