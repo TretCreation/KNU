@@ -13,53 +13,70 @@
         static void Main()
         {
             var gameState = new GameState();
+            DateTime startScreenEndTime = DateTime.Now.AddSeconds(5); // Set the end time for the start screen
+            bool startScreenDisplayed = false; // Track whether the start screen has been displayed
 
             while (true)
             {
                 var initialTimeStamp = DateTime.Now;
-                // handles the updated gamestate
-                var state = HandleFrame(gameState);
 
-                if (state.CheckGameOver())
+                if (!startScreenDisplayed)
                 {
-                    RenderGameOverScreen(state);
-                    var key = Console.ReadKey(true).Key;
-
-                    while (true)
+                    if (DateTime.Now < startScreenEndTime && !Console.KeyAvailable)
                     {
-                        if (key == ConsoleKey.Q || key == ConsoleKey.Enter)
-                            break;
-                        else
-                            key = Console.ReadKey(true).Key;
+                        RenderStartScreen();
                     }
-
-                    if (key == ConsoleKey.Q)
+                    else
                     {
-                        break;
-                    }
-                    else if (key == ConsoleKey.Enter)
-                    {
-                        startTime = DateTime.Now;
-                        currentSpeed = 40;
-                        state.EscapedEnemiesCount = 0;
-                        state.GameScore = 0;
-                        state.Player = new Player(38, 30);
-                        state.Enemies = new List<Enemy>();
-                        state.Bullets = new List<Bullet>();
+                        startScreenDisplayed = true; // Mark the start screen as displayed
                     }
                 }
+                else
+                {
+                    // handles the updated game state
+                    var state = HandleFrame(gameState);
 
-                //Draws State to console
-                Render(state);
+                    if (state.CheckGameOver())
+                    {
+                        RenderGameOverScreen(state);
+                        var key = Console.ReadKey(true).Key;
 
-                gameState = state;
+                        while (true)
+                        {
+                            if (key == ConsoleKey.Q || key == ConsoleKey.Enter)
+                                break;
+                            else
+                                key = Console.ReadKey(true).Key;
+                        }
 
-                elapsedTime = (DateTime.Now - startTime).TotalSeconds;
+                        if (key == ConsoleKey.Q)
+                        {
+                            break;
+                        }
+                        else if (key == ConsoleKey.Enter)
+                        {
+                            startTime = DateTime.Now;
+                            currentSpeed = 40;
+                            state.EscapedEnemiesCount = 0;
+                            state.GameScore = 0;
+                            state.Player = new Player(38, 30);
+                            state.Enemies = new List<Enemy>();
+                            state.Bullets = new List<Bullet>();
+                        }
+                    }
 
-                //Extra sleep time to maintain uniform speed
-                int napTime = GetNapTime(initialTimeStamp, elapsedTime, ref currentSpeed);
-                FrameCount++;
-                Thread.Sleep(napTime);
+                    // Draw State to console
+                    Render(state);
+
+                    gameState = state;
+
+                    elapsedTime = (DateTime.Now - startTime).TotalSeconds;
+
+                    // Extra sleep time to maintain uniform speed
+                    int napTime = GetNapTime(initialTimeStamp, elapsedTime, ref currentSpeed);
+                    FrameCount++;
+                    Thread.Sleep(napTime);
+                }
             }
         }
 
@@ -113,6 +130,13 @@
             }
 
             return naptime > 0 ? naptime : 0;
+        }
+
+        static void RenderStartScreen()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(30, 14);
+            Console.Write("Game Start");
         }
 
         static void RenderGameOverScreen(GameState state)
