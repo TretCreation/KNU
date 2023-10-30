@@ -2,8 +2,6 @@
 {
     class Program
     {
-        // public static int ElapsedTime { get; set; }
-
         static DateTime startTime = DateTime.Now;
 
         static int FrameCount = 0;
@@ -19,7 +17,6 @@
             while (true)
             {
                 var initialTimeStamp = DateTime.Now;
-
                 // handles the updated gamestate
                 var state = HandleFrame(gameState);
 
