@@ -13,22 +13,26 @@
         static void Main()
         {
             var gameState = new GameState();
-            DateTime startScreenEndTime = DateTime.Now.AddSeconds(5); // Set the end time for the start screen
-            bool startScreenDisplayed = false; // Track whether the start screen has been displayed
+            DateTime startScreenEndTime = DateTime.Now.AddSeconds(15); // Set the end time for the start screen
 
             while (true)
             {
                 var initialTimeStamp = DateTime.Now;
 
-                if (!startScreenDisplayed)
+                if (DateTime.Now < startScreenEndTime)
                 {
-                    if (DateTime.Now < startScreenEndTime && !Console.KeyAvailable)
+                    // Check if the LeftArrow or RightArrow key is pressed
+                    if (Console.KeyAvailable)
                     {
-                        RenderStartScreen();
+                        var key = Console.ReadKey(true).Key;
+                        if (key == ConsoleKey.LeftArrow || key == ConsoleKey.RightArrow)
+                        {
+                            startScreenEndTime = DateTime.Now; // Skip the start screen
+                        }
                     }
                     else
                     {
-                        startScreenDisplayed = true; // Mark the start screen as displayed
+                        RenderStartScreen();
                     }
                 }
                 else
