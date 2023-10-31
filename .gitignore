@@ -4,6 +4,7 @@
 **/.vscode
 **/.config
 **/node_modules
+**/.vs
 
 /KNU.sln
 
