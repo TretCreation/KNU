@@ -5,6 +5,8 @@
 **/.config
 **/node_modules
 
+/KNU.sln
+
 # Tests
 **/test1.cs
 **/test2.cs
