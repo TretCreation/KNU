@@ -1,3 +1,13 @@
-﻿@{
+﻿@page
+@model CalculatorModel
+@{
     ViewData["Title"] = "Calculator Page";
 }
+
+<form method="post">
+    <input type="text" asp-for="Result" readonly />
+    <br />
+    <button type="submit" asp-page-handler="Digit" asp-route-value="1">1</button>
+    <!-- Add buttons for digits 2 to 9, operators +, -, and * -->
+    <button type="submit" asp-page-handler="Calculate">=</button>
+</form>

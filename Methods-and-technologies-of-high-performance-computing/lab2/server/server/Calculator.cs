@@ -1,40 +1,62 @@
-// using Microsoft.AspNetCore.Mvc.RazorPages;
-// using System;
-// using System.Collections.Generic;
+using System;
+using System.Data;
+using System.Web.UI;
+using System.Web;
 
-// public class CalculatorModel : PageModel
-// {
-//     public double Number1 { get; set; }
-//     public double Number2 { get; set; }
-//     public string Operator { get; set; }
-//     public double Result { get; set; }
+namespace CalculatorApp
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        private string currentInput = string.Empty;
+        private double result = 0;
+        private char currentOperator;
 
-//     public List<SelectListItem> Operators { get; } =
-//         new List<SelectListItem>
-//         {
-//             new SelectListItem("+", "+"),
-//             new SelectListItem("-", "-"),
-//             new SelectListItem("*", "*"),
-//         };
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                txtResult.Text = "0";
+            }
+        }
 
-//     public void OnGet() { }
+        protected void Number_Click(object sender, EventArgs e)
+        {
+            var button = (System.Web.UI.WebControls.Button)sender;
+            var number = button.Text;
+            currentInput += number;
+            txtResult.Text = currentInput;
+        }
 
-//     public void OnPostCalculate()
-//     {
-//         switch (Operator)
-//         {
-//             case "+":
-//                 Result = Number1 + Number2;
-//                 break;
-//             case "-":
-//                 Result = Number1 - Number2;
-//                 break;
-//             case "*":
-//                 Result = Number1 * Number2;
-//                 break;
-//             default:
-//                 Result = 0; // Invalid operator
-//                 break;
-//         }
-//     }
-// }
+        protected void Operator_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentInput))
+            {
+                result = double.Parse(currentInput);
+                currentInput = string.Empty;
+                currentOperator = ((System.Web.UI.WebControls.Button)sender).Text[0];
+            }
+        }
+
+        protected void Calculate_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentInput))
+            {
+                var operand = double.Parse(currentInput);
+                switch (currentOperator)
+                {
+                    case '+':
+                        result += operand;
+                        break;
+                    case '-':
+                        result -= operand;
+                        break;
+                    case '*':
+                        result *= operand;
+                        break;
+                }
+                txtResult.Text = result.ToString();
+                currentInput = string.Empty;
+            }
+        }
+    }
+}
