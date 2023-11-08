@@ -1,35 +1,38 @@
-// using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
-// public class RPCCalculatorController : ApiController
-// {
-//     [HttpGet]
-//     public double Add(double a, double b)
-//     {
-//         return a + b;
-//     }
+[Route("api/calculator")]
+public class RPCCalculatorController : ControllerBase
+{
+    [HttpGet("sum")]
+    public IActionResult Sum([FromQuery] double a, [FromQuery] double b)
+    {
+        double result = a + b;
+        return Ok(result);
+    }
 
-//     [HttpGet]
-//     public double Subtract(double a, double b)
-//     {
-//         return a - b;
-//     }
+    [HttpGet("diff")]
+    public IActionResult Difference([FromQuery] double a, [FromQuery] double b)
+    {
+        double result = a - b;
+        return Ok(result);
+    }
 
-//     [HttpGet]
-//     public double Multiply(double a, double b)
-//     {
-//         return a * b;
-//     }
+    [HttpGet("mul")]
+    public IActionResult Multiply([FromQuery] double a, [FromQuery] double b)
+    {
+        double result = a * b;
+        return Ok(result);
+    }
 
-//     [HttpGet]
-//     public double Divide(double a, double b)
-//     {
-//         if (b != 0)
-//         {
-//             return a / b;
-//         }
-//         else
-//         {
-//             throw new HttpResponseException(System.Net.HttpStatusCode.BadRequest);
-//         }
-//     }
-// }
+    [HttpGet("div")]
+    public IActionResult Divide([FromQuery] double a, [FromQuery] double b)
+    {
+        if (b == 0)
+        {
+            return BadRequest("Division by zero is not allowed.");
+        }
+
+        double result = a / b;
+        return Ok(result);
+    }
+}
