@@ -1,13 +1,33 @@
-﻿@page
-@model CalculatorModel
-@{
-    ViewData["Title"] = "Calculator Page";
+﻿@model CalculatorModel
+
+<h2>Calculator</h2>
+
+@using (Html.BeginForm("Calculate", "Calculator", FormMethod.Post))
+{
+    <div>
+        Operand 1: <input asp-for="Operand1" />
+    </div>
+    <div>
+        Operator:
+        <select asp-for="Operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+    </div>
+    <div>
+        Operand 2: <input asp-for="Operand2" />
+    </div>
+    <button type="submit">Calculate</button>
 }
 
-<form method="post">
-    <input type="text" asp-for="Result" readonly />
-    <br />
-    <button type="submit" asp-page-handler="Digit" asp-route-value="1">1</button>
-    <!-- Add buttons for digits 2 to 9, operators +, -, and * -->
-    <button type="submit" asp-page-handler="Calculate">=</button>
-</form>
+@if (Model.Result != 0)
+{
+    <div>
+        Result: @Model.Result
+    </div>
+}
+
+<span asp-validation-for="Operand2"></span>
+<span asp-validation-for="Operator"></span>

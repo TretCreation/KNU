@@ -24,6 +24,21 @@ app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "calculator",
+        pattern: "Calculator",
+        defaults: new { controller = "Calculator", action = "Index" }
+    );
+});
+
+// config.Routes.MapHttpRoute(
+//     name: "CalculatorApi",
+//     routeTemplate: "api/calculator/{action}",
+//     defaults: new { controller = "Calculator" }
+// );
+
 // app.MapHub<ChatHub>("chat-hub");
 
 app.Run();
