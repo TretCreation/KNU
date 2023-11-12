@@ -13,7 +13,7 @@
         static void Main()
         {
             var gameState = new GameState();
-            DateTime startScreenEndTime = DateTime.Now.AddSeconds(15); // Set the end time for the start screen
+            DateTime startScreenEndTime = DateTime.Now.AddSeconds(15);
 
             while (true)
             {
@@ -21,13 +21,13 @@
 
                 if (DateTime.Now < startScreenEndTime)
                 {
-                    // Check if the LeftArrow or RightArrow key is pressed
                     if (Console.KeyAvailable)
                     {
                         var key = Console.ReadKey(true).Key;
+                        // Skip the start screen
                         if (key == ConsoleKey.LeftArrow || key == ConsoleKey.RightArrow)
                         {
-                            startScreenEndTime = DateTime.Now; // Skip the start screen
+                            startScreenEndTime = DateTime.Now;
                         }
                     }
                     else
@@ -37,7 +37,6 @@
                 }
                 else
                 {
-                    // handles the updated game state
                     var state = HandleFrame(gameState);
 
                     if (state.CheckGameOver())
@@ -57,7 +56,7 @@
                         {
                             break;
                         }
-                        else if (key == ConsoleKey.Enter)
+                        if (key == ConsoleKey.Enter)
                         {
                             startTime = DateTime.Now;
                             currentSpeed = 40;
@@ -69,14 +68,13 @@
                         }
                     }
 
-                    // Draw State to console
                     Render(state);
 
                     gameState = state;
 
                     elapsedTime = (DateTime.Now - startTime).TotalSeconds;
 
-                    // Extra sleep time to maintain uniform speed
+                    // Extra time to increase speed
                     int napTime = GetNapTime(initialTimeStamp, elapsedTime, ref currentSpeed);
                     FrameCount++;
                     Thread.Sleep(napTime);
@@ -120,11 +118,10 @@
             var timeDifference = (finalTimeStamp - initialTime).TotalMilliseconds;
             int naptime = 0;
 
-            // Check if it's time to adjust the game spewhyed (e.g., every 5 seconds)
             if (elapsedTime >= 10)
             {
                 // Decrease naptime to make the game faster
-                currentSpeed -= 5; // Adjust this value as needed
+                currentSpeed -= 5;
                 startTime = DateTime.Now; // Reset the start time to keep increasing speed
             }
 
