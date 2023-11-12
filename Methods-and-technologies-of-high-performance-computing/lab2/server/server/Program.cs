@@ -22,14 +22,23 @@ app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Inde
 
 app.MapControllers();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "calculator",
-        pattern: "Calculator",
-        defaults: new { controller = "Calculator", action = "Index" }
-    );
-    endpoints.MapControllers();
-});
+// app.UseEndpoints(endpoints =>
+// {
+//     // endpoints.MapControllerRoute(
+//     //     name: "calculator",
+//     //     pattern: "Calculator",
+//     //     defaults: new { controller = "Calculator", action = "Index" }
+//     // );
+//     app.UseEndpoints(endpoints =>
+//     {
+//         endpoints.MapControllerRoute(
+//             name: "auth",
+//             pattern: "{controller=Auth}/{action=Index}/{id?}"
+//         );
+
+//         // Add this if you want to enable attribute routing in controllers
+//         // endpoints.MapControllers();
+//     });
+// });
 
 app.Run();
