@@ -2,26 +2,16 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-//TODO: FIX deadlocks
 public class DiningPhilosophers
 {
     private const int NumPhilosophers = 5;
-    private IntPtr[] forks = new IntPtr[NumPhilosophers];
-
-    [DllImport("libc", SetLastError = true)]
-    private static extern int pthread_mutex_init(out IntPtr mutex, IntPtr attr);
-
-    [DllImport("libc", SetLastError = true)]
-    private static extern int pthread_mutex_lock(IntPtr mutex);
-
-    [DllImport("libc", SetLastError = true)]
-    private static extern int pthread_mutex_unlock(IntPtr mutex);
+    private object[] forkLocks = new object[NumPhilosophers]; // One lock for each fork
 
     public DiningPhilosophers()
     {
         for (int i = 0; i < NumPhilosophers; i++)
         {
-            pthread_mutex_init(out forks[i], IntPtr.Zero);
+            forkLocks[i] = new object();
         }
     }
 
@@ -51,19 +41,19 @@ public class DiningPhilosophers
         {
             Console.WriteLine($"Philosopher {philosopherId} is thinking.");
 
-            Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(3))); // Thinking
+            // Thinking
+            Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(3)));
 
             Console.WriteLine($"Philosopher {philosopherId} is hungry and tries to pick up forks.");
 
-            if (pthread_mutex_trylock(forks[leftFork]) == 0)
+            lock (forkLocks[leftFork])
             {
-                if (pthread_mutex_trylock(forks[rightFork]) == 0)
+                lock (forkLocks[rightFork])
                 {
+                    // Both forks acquired
                     Console.WriteLine($"Philosopher {philosopherId} is eating.");
                     Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(3))); // Eating
-                    pthread_mutex_unlock(forks[rightFork]);
                 }
-                pthread_mutex_unlock(forks[leftFork]);
             }
         }
     }
@@ -73,7 +63,4 @@ public class DiningPhilosophers
         DiningPhilosophers diningPhilosophers = new DiningPhilosophers();
         diningPhilosophers.StartDining();
     }
-
-    [DllImport("libc", SetLastError = true)]
-    private static extern int pthread_mutex_trylock(IntPtr mutex);
 }
