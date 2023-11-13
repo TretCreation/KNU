@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+      <h1 id="formTitle">Auth</h1>
+    <form id="authForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <br/>
+        <br/>
+        <button type="button" onclick="submitForm('reg')">Register</button>
+        <br/>
+        <br/>
+        <button type="button" onclick="submitForm('login')">Login</button>
+    </form>
+    <div id="responseMessage"></div>
+
+    <script>
+        function submitForm(type) {
+            var form = document.getElementById('authForm');
+            var formData = new FormData(form);
+
+            var jsonData = {};
+            formData.forEach(function(value, key){
+                jsonData[key] = value;
+            });
+
+            var xhr = new XMLHttpRequest();
+            if (type === 'reg') {
+                xhr.open('POST', '/api/Auth/register', true);
+            } else {
+                xhr.open('POST', '/api/Auth/login', true);
+            }
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        responseMessage.innerHTML = 'Success: ' + xhr.responseText;
+                        console.log(xhr.responseText);
+                    } else {
+                        responseMessage.innerHTML = 'Error: ' + xhr.responseText;
+                        console.error('Request failed');
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(jsonData));
+        }
+    </script>
+</div>
+
+
