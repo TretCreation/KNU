@@ -1,41 +1,42 @@
 import React, { FC, useState } from 'react'
 
+import useMatrix from '../../../hooks/useMatrix'
 import graph from '../../../img/graph.png'
 import styles from './Form.module.scss'
-import FormInput from './form-input/FormInput'
+import FormButton from './form-button/FormButton'
 
 const Form: FC = () => {
-  const [input1, setInput1] = useState<number>(0)
-  const [input2, setInput2] = useState<number>(0)
-  const [input3, setInput3] = useState<number>(0)
-  const [input4, setInput4] = useState<number>(0)
-  const [input5, setInput5] = useState<number>(0)
-  const [input6, setInput6] = useState<number>(0)
-  const [input7, setInput7] = useState<number>(0)
-  const [input8, setInput8] = useState<number>(0)
-  const [input9, setInput9] = useState<number>(0)
-  const [input10, setInput10] = useState<number>(0)
+  const [input, setInput] = useState<number>(0)
+  // console.log(useMatrix())
+
+  const adjMatrix: number[][] = useMatrix()
 
   return (
     <div className={styles.graph}>
       <img src={graph} alt='graph' className='w-72 mb-2' />
       <div className={styles.input}>
-        <FormInput order={1} setInput={setInput1} />
-        <FormInput order={2} setInput={setInput2} />
-        <FormInput order={3} setInput={setInput3} />
-        <FormInput order={4} setInput={setInput4} />
-        <FormInput order={5} setInput={setInput5} />
-        <FormInput order={6} setInput={setInput6} />
-        <FormInput order={7} setInput={setInput7} />
-        <FormInput order={8} setInput={setInput8} />
-        <FormInput order={9} setInput={setInput9} />
-        <FormInput order={10} setInput={setInput10} />
+        <FormButton input={1} setInput={setInput} />
+        <FormButton input={2} setInput={setInput} />
+        <FormButton input={3} setInput={setInput} />
+        <FormButton input={4} setInput={setInput} />
+        <FormButton input={5} setInput={setInput} />
+        <FormButton input={6} setInput={setInput} />
+        <FormButton input={7} setInput={setInput} />
+        <FormButton input={8} setInput={setInput} />
+        <FormButton input={9} setInput={setInput} />
+        <FormButton input={10} setInput={setInput} />
       </div>
-      <button type='button' className={styles.button}>
-        Send
+      <button
+        type='button'
+        className='bg-red-500 hover:bg-red-700 text-white-main font-bold py-2 px-4 rounded mt-4'
+      >
+        Result
       </button>
       <div className={styles.result}>
         <p>result</p>
+        {adjMatrix.map((row: number[], index: number) => (
+          <p key={index}>{row.join(' ')}</p>
+        ))}
       </div>
     </div>
   )
