@@ -2,6 +2,22 @@
   @apply container relative mx-auto my-0;
 }
 
-.text {
-  @apply text-red-500;
-}
+/* .graph {
+  @apply flex flex-col justify-center items-center h-screen pb-80;
+
+  .main {
+    @apply grid grid-cols-5 w-80;
+
+    .input {
+      @apply flex flex-row;
+    }
+
+    .p {
+      @apply text-xl;
+    }
+  }
+
+  .button {
+    @apply bg-blue-500 hover:bg-blue-700 text-white-main font-bold py-2 px-4 rounded;
+  }
+} */

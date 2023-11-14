@@ -43,7 +43,7 @@
     ],
     "semi": "off",
     "@typescript-eslint/no-require-imports": "error",
-    "simple-import-sort/imports": "error",
+    "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "error",
     "import/prefer-default-export": 0,
     "react/react-in-jsx-scope": 0,
@@ -59,6 +59,10 @@
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     //*
-    "import/no-extraneous-dependencies": 0
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "@typescript-eslint/no-unsafe-return": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/self-closing-comp": 0,
+    "arrow-body-style": 1
   }
 }
