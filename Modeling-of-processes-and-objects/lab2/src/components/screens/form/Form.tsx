@@ -4,27 +4,47 @@ import useMatrix from '../../../hooks/useMatrix'
 import graph from '../../../img/graph.png'
 import styles from './Form.module.scss'
 import FormButton from './form-button/FormButton'
+import FormInput from './form-input/FormInput'
 
 const Form: FC = () => {
   const [input, setInput] = useState<number>(0)
-  // console.log(useMatrix())
+  const [value, setValue] = useState<number[]>([])
+  const [col, setCol] = useState<number[]>([])
 
+  console.log('col', col)
+  console.log('input', input)
+  // console.log(value)
   const adjMatrix: number[][] = useMatrix()
 
   return (
-    <div className={styles.graph}>
-      <img src={graph} alt='graph' className='w-72 mb-2' />
-      <div className={styles.input}>
-        <FormButton input={1} setInput={setInput} />
-        <FormButton input={2} setInput={setInput} />
-        <FormButton input={3} setInput={setInput} />
-        <FormButton input={4} setInput={setInput} />
-        <FormButton input={5} setInput={setInput} />
-        <FormButton input={6} setInput={setInput} />
-        <FormButton input={7} setInput={setInput} />
-        <FormButton input={8} setInput={setInput} />
-        <FormButton input={9} setInput={setInput} />
-        <FormButton input={10} setInput={setInput} />
+    <div className={styles.wrapper}>
+      <div className={styles.main}>
+        <img src={graph} alt='graph' className='w-72 mb-2 mr-9' />
+        <div className={styles.matrix}>
+          {adjMatrix.map((row: number[], index: number) => (
+            <p key={index}>{row.join(' ')}</p>
+          ))}
+        </div>
+      </div>
+      <div className={styles.inputs}>
+        <div className={styles.buttons}>
+          <FormButton item={1} setInput={setInput} setCol={setCol} />
+          <FormButton item={2} setInput={setInput} setCol={setCol} />
+          <FormButton item={3} setInput={setInput} setCol={setCol} />
+          <FormButton item={4} setInput={setInput} setCol={setCol} />
+          <FormButton item={5} setInput={setInput} setCol={setCol} />
+          <FormButton item={6} setInput={setInput} setCol={setCol} />
+          <FormButton item={7} setInput={setInput} setCol={setCol} />
+          <FormButton item={8} setInput={setInput} setCol={setCol} />
+          <FormButton item={9} setInput={setInput} setCol={setCol} />
+          <FormButton item={10} setInput={setInput} setCol={setCol} />
+        </div>
+        <div className={styles.value}>
+          <FormInput setValue={setValue} />
+          {value.map((v: number, index: number) => (
+            <p key={index}>{v}</p>
+          ))}
+        </div>
       </div>
       <button
         type='button'
@@ -34,9 +54,6 @@ const Form: FC = () => {
       </button>
       <div className={styles.result}>
         <p>result</p>
-        {adjMatrix.map((row: number[], index: number) => (
-          <p key={index}>{row.join(' ')}</p>
-        ))}
       </div>
     </div>
   )

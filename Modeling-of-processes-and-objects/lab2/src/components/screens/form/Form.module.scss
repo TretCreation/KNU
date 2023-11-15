@@ -1,8 +1,16 @@
-.graph {
+.wrapper {
   @apply flex flex-col justify-center items-center h-screen pb-80;
 
-  .input {
-    @apply grid grid-cols-5 w-80;
+  .main {
+    @apply flex flex-row;
+
+    .inputs {
+      @apply mr-44;
+    }
+  }
+
+  .buttons {
+    @apply grid grid-cols-5 w-80 mb-5;
   }
 
   .button {
