@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import useMatrix from '../../../hooks/useMatrix'
+import useMultiplyMatrix from '../../../hooks/useMultiplyMatrix'
 import graph from '../../../img/graph.png'
 import styles from './Form.module.scss'
 import FormButton from './form-button/FormButton'
@@ -8,13 +9,20 @@ import FormInput from './form-input/FormInput'
 
 const Form: FC = () => {
   const [input, setInput] = useState<number>(0)
+  const [matrix, setMatrix] = useState<number[][]>([])
   const [value, setValue] = useState<number[]>([])
+  console.log('value', value)
   const [col, setCol] = useState<number[]>([])
 
-  console.log('col', col)
-  console.log('input', input)
-  // console.log(value)
   const adjMatrix: number[][] = useMatrix()
+
+  console.log('matrix', matrix)
+  console.log('adjMatrix', adjMatrix)
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks, react-hooks/exhaustive-deps
+    setMatrix(useMultiplyMatrix(adjMatrix, value, 9))
+  }, [adjMatrix, value])
 
   return (
     <div className={styles.wrapper}>
@@ -53,7 +61,11 @@ const Form: FC = () => {
         Result
       </button>
       <div className={styles.result}>
-        <p>result</p>
+        <div className={styles.matrix}>
+          {matrix.map((row: number[], index: number) => (
+            <p key={index}>{row.join(' ')}</p>
+          ))}
+        </div>
       </div>
     </div>
   )
