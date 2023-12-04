@@ -65,6 +65,10 @@
     "react/self-closing-comp": 0,
     "arrow-body-style": 1,
     "no-plusplus": 0,
-    "@typescript-eslint/restrict-plus-operands": 0
+    "@typescript-eslint/restrict-plus-operands": 0,
+    "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": false }],
+    "jsx-a11y/label-has-associated-control": 0,
+    "react-hooks/rules-of-hooks": 0,
+    "consistent-return": 0
   }
 }

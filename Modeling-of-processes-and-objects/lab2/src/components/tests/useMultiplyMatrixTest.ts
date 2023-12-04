@@ -30,19 +30,12 @@ export default function multiplyMatrixByVector(
 
 // Example usage with your provided matrix and vector, saving each iteration's result
 const matrix = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [-1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-  [0, 1, 0, -1, 1, -1, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, -1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 0, -1, 1, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, -1, 0, 0, 0],
-  [0, -1, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0],
+  [-1, 0, -1],
+  [1, 1, 0]
 ]
 
-const initialVector = [1, 0, 1, -1, 0, 1, 0, 0, -1, 1]
+const initialVector = [1, 0, 0]
 const iterations = 9
 
 const resultArray = multiplyMatrixByVector(matrix, initialVector, iterations)

@@ -29,8 +29,8 @@ export const routes: [string, string, string][] = [
   ['10', '2', '+']
 ]
 
-export const vector1: number[] = [0, -1, 0, 0, 0, 0, 0, 0, 0, 0]
+// export const vector1: number[] = [0, -1, 0, 0, 0, 0, 0, 0, 0, 0]
 
-export const vector2: number[] = [0, 0, 1, 0, 0, 0, 0, 0, 0, -1]
+// export const vector2: number[] = [0, 0, 1, 0, 0, 0, 0, 0, 0, -1]
 
-export const vector3: number[] = [0, 0, 0, 1, -1, 1, 1, 0, 0, 0]
+// export const vector3: number[] = [0, 0, 0, 1, -1, 1, 1, 0, 0, 0]

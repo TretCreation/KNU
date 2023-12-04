@@ -14,6 +14,8 @@ function resultMatrices(vector: number[], matrix: number[][]): number[] {
 
 function useMultiplyMatrix(matrix: number[][], vector: number[], iterations: number): number[][] {
   const resultArray: number[][] = []
+  resultArray.unshift(vector.slice()) // Add the initial vector to the start
+
   let result = vector.slice() // Copy the initial vector
 
   for (let i = 0; i < iterations; i++) {

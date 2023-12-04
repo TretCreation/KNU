@@ -15,14 +15,10 @@ function createAdjacencyMatrix(vertices: number, edges: [string, string, string]
   return matrix
 }
 
-function transposeMatrix(matrix: number[][]): number[][] {
-  return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]))
-}
-
 // Create an adjacency matrix
 const adjacencyMatrix: number[][] = createAdjacencyMatrix(peaks.length, routes)
-const transposedMatrix = transposeMatrix(adjacencyMatrix)
+// const transposedMatrix = transposeMatrix(adjacencyMatrix)
 
-const useMatrix = () => transposedMatrix
+const useMatrix = () => adjacencyMatrix
 
 export default useMatrix

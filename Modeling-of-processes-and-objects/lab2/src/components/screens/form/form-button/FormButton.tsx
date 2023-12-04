@@ -4,11 +4,11 @@ import styles from './FormButton.module.scss'
 
 interface IFormButton {
   item: number
-  setInput: React.Dispatch<React.SetStateAction<number>>
+  array: number[][]
   setCol: React.Dispatch<React.SetStateAction<number[]>>
 }
 
-const FormButton: FC<IFormButton> = ({ item, setInput, setCol }) => {
+const FormButton: FC<IFormButton> = ({ item, array, setCol }) => {
   const onAddSubmit = (item: number) => {
     switch (item) {
       case 1:
@@ -44,7 +44,6 @@ const FormButton: FC<IFormButton> = ({ item, setInput, setCol }) => {
       default:
         break
     }
-    setInput(item)
   }
 
   return (
