@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex flex-col justify-center items-center h-screen pb-80;
+  @apply flex flex-col justify-center items-center mt-20;
 
   .main {
     @apply flex flex-row;
@@ -19,5 +19,5 @@
 }
 
 /* .result {
-  @apply;
+  @apply overflow-auto;
 } */

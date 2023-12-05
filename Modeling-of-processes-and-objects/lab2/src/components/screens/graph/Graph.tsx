@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2'
 
 Chart.register(...registerables)
 
-const MyScatterChart: React.FC<{ data: number[][] }> = ({ data }) => {
+const MyLineChart: React.FC<{ data: number[][] }> = ({ data }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
@@ -12,14 +12,14 @@ const MyScatterChart: React.FC<{ data: number[][] }> = ({ data }) => {
       const ctx = chartRef.current.getContext('2d') as CanvasRenderingContext2D
 
       const datasets = data.map((line, typeIndex) => ({
-        label: `Type ${typeIndex + 1}`,
-        data: line.map((y, x): ScatterDataPoint => ({ x: x + 1, y })),
-        connectLines: Array(10).fill(true), // Connect all points for each type
-        fill: false
+        label: `p${typeIndex + 1}`,
+        data: line.map((y, x) => ({ x: x + 1, y })),
+        fill: false,
+        lineTension: 0 // Disable bezier curves between points
       }))
 
       const myChart = new Chart(ctx, {
-        type: 'scatter',
+        type: 'line',
         data: {
           datasets
         },
@@ -56,4 +56,4 @@ const MyScatterChart: React.FC<{ data: number[][] }> = ({ data }) => {
   return <canvas ref={chartRef} style={{ width: '800px', height: '600px' }} />
 }
 
-export default MyScatterChart
+export default MyLineChart

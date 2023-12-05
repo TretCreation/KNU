@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import Form from '../form/Form'
 import styles from './Home.module.scss'
 
-const Home: React.FC = () => (
+const Home: FC = () => (
   <div className={styles.wrapper}>
     <Form />
   </div>
