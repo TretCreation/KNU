@@ -76,7 +76,7 @@ const Form: FC = () => {
               <MyChart data={transposedMatrix} />
             </div>
           </div>
-          <div className={styles.value}>
+          {/* <div className={styles.value}>
             <FormInput setValue={setValue} />
             {value.map((v: number, index: number) => (
               <p key={index}>{v}</p>
@@ -96,7 +96,7 @@ const Form: FC = () => {
             <div className={styles.graph}>
               <MyChart data={transposedMatrix2} />
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>

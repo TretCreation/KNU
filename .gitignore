@@ -11,3 +11,13 @@
 # Tests
 **/test1.cs
 **/test2.cs
+**/test1.ts
+**/test2.ts
+
+# docx
+**/lab1.docx
+**/lab2.docx
+**/lab3.docx
+**/lab4.docx
+**/lab5.docx
+**/lab6.docx
