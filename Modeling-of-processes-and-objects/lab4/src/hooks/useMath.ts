@@ -1,27 +1,4 @@
-import { all, create } from 'mathjs'
-
-const math = create(all)
-
-interface StateProbabilities {
-  p0: number
-  p1: number
-  p2: number
-  p3: number
-}
-
-interface TransitionRates {
-  lambda01: number
-  lambda02: number
-  lambda13: number
-  lambda23: number
-  lambda32: number
-  mu10: number
-  mu13: number
-  mu20: number
-  mu23: number
-  mu31: number
-  mu32: number
-}
+import { StateProbabilities, TransitionRates } from '../interfaces/math.interface'
 
 function calculateLimitingProbabilities(
   rates: TransitionRates,
@@ -30,7 +7,6 @@ function calculateLimitingProbabilities(
   tEnd: number,
   dt: number
 ): StateProbabilities {
-  // TODO: (Y)???? mb change name file
   const systemOfEquations = (t: number, Y: number[]) => [
     rates.lambda01 * Y[1] + rates.lambda02 * Y[2] - rates.mu10 * Y[0],
     rates.mu10 * Y[0] - (rates.lambda01 + rates.mu13 + rates.mu20 + rates.mu23) * Y[1],
@@ -48,7 +24,7 @@ function calculateLimitingProbabilities(
   for (let t = tStart; t <= tEnd; t += dt) {
     const derivatives = systemOfEquations(t, currentState)
     currentState = currentState.map((value, index) => value + derivatives[index] * dt)
-    results.push(currentState.slice())
+    results.push([...currentState]) // Use spread operator to clone the array
   }
 
   const lastState = results[results.length - 1]
@@ -65,26 +41,40 @@ function calculateLimitingProbabilities(
   return state
 }
 
-async function main() {
-  // Get user-provided parameters from the command line or any other input method
+export default function useMath({
+  lambda01,
+  lambda02,
+  lambda13,
+  lambda23,
+  lambda32,
+  mu10,
+  mu13,
+  mu20,
+  mu23,
+  mu31,
+  mu32,
+  userTStart,
+  userTEnd,
+  userDt
+}: TransitionRates) {
   const userRates: TransitionRates = {
-    lambda01: parseFloat(process.argv[2]) || 0.7,
-    lambda02: parseFloat(process.argv[3]) || 0.8,
-    lambda13: parseFloat(process.argv[4]) || 0.3,
-    lambda23: parseFloat(process.argv[5]) || 0.4,
-    lambda32: parseFloat(process.argv[6]) || 0.5,
-    mu10: parseFloat(process.argv[7]) || 0.6,
-    mu13: parseFloat(process.argv[8]) || 0.2,
-    mu20: parseFloat(process.argv[9]) || 0.8,
-    mu23: parseFloat(process.argv[10]) || 0.9,
-    mu31: parseFloat(process.argv[11]) || 1.0,
-    mu32: parseFloat(process.argv[12]) || 1.3
+    lambda01,
+    lambda02,
+    lambda13,
+    lambda23,
+    lambda32,
+    mu10,
+    mu13,
+    mu20,
+    mu23,
+    mu31,
+    mu32,
+    userTStart,
+    userTEnd,
+    userDt
   }
 
   const userInitialProbabilities: number[] = [1, 0, 0, 0]
-  const userTStart: number = parseFloat(process.argv[13]) || 0
-  const userTEnd: number = parseFloat(process.argv[14]) || 100
-  const userDt: number = parseFloat(process.argv[15]) || 0.1
 
   const limitingProbabilities = calculateLimitingProbabilities(
     userRates,
@@ -94,8 +84,5 @@ async function main() {
     userDt
   )
 
-  console.log('Limiting Probabilities:', limitingProbabilities)
+  return limitingProbabilities
 }
-
-// Execute the main function
-main()
